@@ -6,7 +6,6 @@ public class TurnTrigger : MonoBehaviour
     private bool firstEntry = true;
     private bool pastTrigger = false;
     private float currXOffset;
-    private float currYOffset;
     private float currZOffset;
     private float turnDegrees;
 
@@ -32,7 +31,6 @@ public class TurnTrigger : MonoBehaviour
         if(firstEntry)
         {
             currXOffset = cameraController.xOffset;
-            currYOffset = cameraController.yOffset;
             currZOffset = cameraController.zOffset;
             firstEntry = false;
         }
@@ -44,28 +42,24 @@ public class TurnTrigger : MonoBehaviour
             if(DirectionTo == "North")
             {
                 cameraController.xOffset = 0;
-                cameraController.yOffset = 2.5f;
-                cameraController.zOffset = -5;
+                cameraController.zOffset = -7;
             }
 
             if(DirectionTo == "East")
             {
-                cameraController.xOffset = -5;
-                cameraController.yOffset = 2.5f;
+                cameraController.xOffset = -7;
                 cameraController.zOffset = 0;
             }
 
             if(DirectionTo == "South")
             {
                 cameraController.xOffset = 0;
-                cameraController.yOffset = 2.5f;
-                cameraController.zOffset = 5;
+                cameraController.zOffset = 7;
             }
 
             if(DirectionTo == "West")
             {
-                cameraController.xOffset = 5;
-                cameraController.yOffset = 2.5f;
+                cameraController.xOffset = 7;
                 cameraController.zOffset = 0;
             }
 
@@ -78,7 +72,6 @@ public class TurnTrigger : MonoBehaviour
             playerTF.RotateAround(playerTF.position, Vector3.up, -turnDegrees);
 
             cameraController.xOffset = currXOffset;
-            cameraController.yOffset = currYOffset;
             cameraController.zOffset = currZOffset;
 
             pastTrigger = false;

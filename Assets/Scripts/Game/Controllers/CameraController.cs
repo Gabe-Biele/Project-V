@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
     public Transform cameraTarget;
-    private int cameraSpeed = 10;
+    public Vector3 currentCameraTarget;
 
     public float xOffset;
     public float yOffset;
@@ -14,15 +14,16 @@ public class CameraController : MonoBehaviour
     void Start ()
     {
         xOffset = 0;
-        yOffset = 2.5f;
-        zOffset = -5;
-        cameraTarget = GameObject.Find("PlayerMesh").transform;
+        yOffset = 2f;
+        zOffset = -7;
+        cameraTarget = GameObject.Find("CameraTarget").transform;
 	}
 	
 	// Update is called once per frame
 	void LateUpdate ()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(cameraTarget.position.x + xOffset, cameraTarget.position.y + yOffset, cameraTarget.position.z + zOffset), 0.125f);
-        this.transform.LookAt(cameraTarget);
+        currentCameraTarget = Vector3.Lerp(currentCameraTarget, cameraTarget.position, 0.05f);
+        this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(cameraTarget.position.x + xOffset, cameraTarget.position.y + yOffset, cameraTarget.position.z + zOffset), 0.05F);
+        this.transform.LookAt(currentCameraTarget);
     }
 }
